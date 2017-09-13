@@ -3,6 +3,8 @@ machine:
         version: 3.5.2
     environment:
         ENVIRONMENT: test
+        DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+
     services:
         - docker
 
