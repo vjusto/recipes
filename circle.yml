@@ -12,17 +12,8 @@ dependencies:
     - pip install ecs_deploy
 
 deployment:
-    production:
-        tag: /v[0-9]+(\.[0-9]+)*(-\w+)?/
-        commands:
-            - eval $(aws ecr get-login --region us-west-2 | sed 's|https://||')
-            - docker build -t recipes .
-            - docker tag recipes:latest $ECR_REPO:$CIRCLE_TAG
-            - docker push $ECR_REPO:$CIRCLE_TAG
-            - ecs deploy -t $CIRCLE_TAG $AWS_CLUSTER_PRODUCTION $AWS_SERVICE_PRODUCTION
-
     development:
-        branch: staging
+        branch: master
         commands:
             - eval $(aws ecr get-login --region us-west-2 | sed 's|https://||')
             - docker build -t recipes .
